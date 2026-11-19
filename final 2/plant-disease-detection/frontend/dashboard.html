@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — PlantGuard AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="/" class="nav-brand">
+        <span class="brand-icon">🌿</span>
+        <span class="brand-name">PlantGuard<span class="brand-ai">AI</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/predict" class="nav-link">Detect Disease</a></li>
+        <li><a href="/dashboard" class="nav-link active">Dashboard</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle">☰</button>
+    </div>
+  </nav>
+
+  <main class="dashboard-main">
+    <div class="container">
+      <div class="dashboard-header">
+        <div>
+          <h1 class="page-title">System <span class="gradient-text">Dashboard</span></h1>
+          <p class="page-subtitle">Monitor predictions, system statistics, and model performance.</p>
+        </div>
+        <a href="/predict" class="btn btn-primary">+ New Detection</a>
+      </div>
+
+      <!-- Stats Cards Row -->
+      <div class="stats-row" id="statsRow">
+        <div class="stat-card card">
+          <div class="stat-card-icon">🔬</div>
+          <div class="stat-card-value" id="totalPredictions">—</div>
+          <div class="stat-card-label">Total Predictions</div>
+        </div>
+        <div class="stat-card card">
+          <div class="stat-card-icon">✅</div>
+          <div class="stat-card-value" id="healthyCount">—</div>
+          <div class="stat-card-label">Healthy Plants</div>
+        </div>
+        <div class="stat-card card">
+          <div class="stat-card-icon">🦠</div>
+          <div class="stat-card-value" id="diseasesDetected">—</div>
+          <div class="stat-card-label">Diseases Found</div>
+        </div>
+        <div class="stat-card card">
+          <div class="stat-card-icon">🎯</div>
+          <div class="stat-card-value" id="avgConfidence">—</div>
+          <div class="stat-card-label">Avg. Confidence</div>
+        </div>
+      </div>
+
+      <!-- Model Performance -->
+      <div class="card model-perf-card">
+        <h2 class="panel-title">🧠 Model Performance (Evaluation Results)</h2>
+        <div class="perf-metrics-grid">
+          <div class="perf-metric">
+            <div class="perf-ring" data-value="92.4" style="--pct: 92.4">
+              <span class="perf-value">92.4%</span>
+            </div>
+            <div class="perf-label">Accuracy</div>
+          </div>
+          <div class="perf-metric">
+            <div class="perf-ring" data-value="91.8" style="--pct: 91.8">
+              <span class="perf-value">91.8%</span>
+            </div>
+            <div class="perf-label">Precision</div>
+          </div>
+          <div class="perf-metric">
+            <div class="perf-ring" data-value="93.1" style="--pct: 93.1">
+              <span class="perf-value">93.1%</span>
+            </div>
+            <div class="perf-label">Recall</div>
+          </div>
+          <div class="perf-metric">
+            <div class="perf-ring" data-value="92.4" style="--pct: 92.4">
+              <span class="perf-value">92.4%</span>
+            </div>
+            <div class="perf-label">F1-Score</div>
+          </div>
+        </div>
+        <div class="model-info-row">
+          <span class="info-badge">MobileNetV2 Transfer Learning</span>
+          <span class="info-badge">87,000+ Training Images</span>
+          <span class="info-badge">38 Disease Classes</span>
+          <span class="info-badge">PlantVillage Dataset</span>
+        </div>
+      </div>
+
+      <!-- Recent Predictions -->
+      <div class="card history-card">
+        <div class="history-header">
+          <h2 class="panel-title">📋 Recent Predictions</h2>
+          <button class="btn btn-small btn-outline" id="refreshHistoryBtn">↻ Refresh</button>
+        </div>
+
+        <div class="history-loading" id="historyLoading">
+          <div class="loading-spinner"></div>
+          <p>Loading prediction history...</p>
+        </div>
+
+        <div class="history-empty" id="historyEmpty" style="display:none">
+          <div class="empty-icon">📋</div>
+          <p>No predictions yet. <a href="/predict">Analyze your first leaf!</a></p>
+        </div>
+
+        <div class="history-table-wrapper" id="historyTableWrapper" style="display:none">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Disease Detected</th>
+                <th>Crop</th>
+                <th>Confidence</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody">
+              <!-- Filled by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>PlantGuard AI — CVRT Engineering College | JNTUA B.Tech CSE 2024-25</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

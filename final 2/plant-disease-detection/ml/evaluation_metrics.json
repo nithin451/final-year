@@ -1,0 +1,11 @@
+{
+  "accuracy": 0.9243,
+  "precision": 0.9182,
+  "recall": 0.9311,
+  "f1_score": 0.9246,
+  "auc_roc": 0.9872,
+  "num_test_samples": 17400,
+  "evaluation_date": "2025-03-15T11:30:00",
+  "model_architecture": "MobileNetV2 Transfer Learning",
+  "num_classes": 38
+}

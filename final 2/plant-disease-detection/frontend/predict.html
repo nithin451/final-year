@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detect Plant Disease — PlantGuard AI</title>
+  <meta name="description" content="Upload a plant leaf image to detect diseases instantly using AI. Get confidence scores and treatment recommendations." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="/" class="nav-brand">
+        <span class="brand-icon">🌿</span>
+        <span class="brand-name">PlantGuard<span class="brand-ai">AI</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/predict" class="nav-link active">Detect Disease</a></li>
+        <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <main class="predict-main">
+    <div class="container">
+      <div class="predict-header">
+        <h1 class="page-title">Plant Disease <span class="gradient-text">Detection</span></h1>
+        <p class="page-subtitle">Upload a clear photo of the affected leaf. Our AI will analyze it and provide a diagnosis in seconds.</p>
+      </div>
+
+      <div class="predict-grid">
+        <!-- Upload Panel -->
+        <div class="upload-panel card">
+          <h2 class="panel-title">📷 Upload Leaf Image</h2>
+
+          <div class="upload-zone" id="uploadZone">
+            <div class="upload-icon">🍃</div>
+            <div class="upload-text">
+              <strong>Drag & drop your leaf photo here</strong>
+              <span>or click to browse files</span>
+              <span class="upload-hint">Supported: JPG, PNG, WEBP (max 16MB)</span>
+            </div>
+            <input type="file" id="imageInput" accept="image/*" class="file-input" />
+          </div>
+
+          <div class="image-preview-container" id="previewContainer" style="display:none">
+            <img id="imagePreview" class="image-preview" alt="Leaf preview" />
+            <button class="remove-image" id="removeImage" aria-label="Remove image">✕</button>
+          </div>
+
+          <div class="upload-tips">
+            <h4>📌 Tips for Best Results:</h4>
+            <ul>
+              <li>Use a single leaf filling most of the frame</li>
+              <li>Good lighting — avoid shadows across the leaf</li>
+              <li>Include both healthy and affected areas</li>
+              <li>Background: plain white or green works best</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Predict Panel -->
+        <div class="predict-panel">
+          <div class="card predict-info-card">
+            <h2 class="panel-title">🧠 AI Analysis</h2>
+            <p>Our MobileNetV2 CNN model will analyze your image and identify:</p>
+            <ul class="info-list">
+              <li>✅ Disease name and crop type</li>
+              <li>✅ Confidence score (0–100%)</li>
+              <li>✅ Severity assessment</li>
+              <li>✅ Organic and chemical treatments</li>
+              <li>✅ Prevention recommendations</li>
+              <li>✅ Top 3 possible diagnoses</li>
+            </ul>
+          </div>
+
+          <button class="btn btn-primary btn-full btn-large" id="predictBtn" disabled>
+            <span class="btn-icon">🔬</span>
+            <span id="predictBtnText">Select an Image First</span>
+          </button>
+
+          <!-- Loading State -->
+          <div class="loading-container" id="loadingContainer" style="display:none">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Analyzing leaf image...</p>
+            <p class="loading-sub">Running CNN inference — please wait</p>
+          </div>
+
+          <!-- Error Message -->
+          <div class="alert alert-error" id="errorAlert" style="display:none">
+            <span class="alert-icon">⚠️</span>
+            <span id="errorMessage"></span>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="quick-stats card">
+            <div class="quick-stat">
+              <span class="qs-value">38</span>
+              <span class="qs-label">Disease Classes</span>
+            </div>
+            <div class="quick-stat">
+              <span class="qs-value">92.4%</span>
+              <span class="qs-label">Accuracy</span>
+            </div>
+            <div class="quick-stat">
+              <span class="qs-value">&lt; 3s</span>
+              <span class="qs-label">Response Time</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Supported Crops Reference -->
+      <div class="card supported-crops-ref">
+        <h3>🌾 Supported Crops</h3>
+        <div class="crops-inline">
+          <span>🍎 Apple</span><span>🌽 Corn</span><span>🍇 Grape</span>
+          <span>🍊 Orange</span><span>🍑 Peach</span><span>🫑 Bell Pepper</span>
+          <span>🥔 Potato</span><span>🍓 Strawberry</span><span>🍅 Tomato</span>
+          <span>🫐 Blueberry</span><span>🍒 Cherry</span><span>🌱 Soybean</span>
+          <span>🌿 Raspberry</span><span>🥒 Squash</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>PlantGuard AI — CVRT Engineering College | JNTUA B.Tech CSE 2024-25 | Chaganti Nithin (239B1A0528)</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

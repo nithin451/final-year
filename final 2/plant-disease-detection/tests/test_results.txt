@@ -1,0 +1,79 @@
+PLANT DISEASE DETECTION SYSTEM
+Sample Test Results — JNTUA B.Tech CSE Final Year Project
+CVRT Engineering College, Tadipatri | 2024-25
+
+================================================================
+TEST SESSION: 2025-03-15 11:30:00
+================================================================
+
+UNIT TESTS (test_model.py)
+------------------------------------------------------------------
+PASS  TC-001: preprocess_image_bytes() returns shape (1,224,224,3)
+PASS  TC-002: preprocess_image_bytes() handles RGBA PNG correctly
+PASS  TC-003: preprocess_image_bytes() raises ValueError for invalid bytes
+PASS  TC-004: Preprocessed pixel values in range [-1.0, 1.0]
+PASS  TC-005: preprocess_single_image() raises FileNotFoundError for missing file
+PASS  TC-006: class_labels.json exists after training
+PASS  TC-007: class_labels.json contains exactly 38 classes
+PASS  TC-008: All class label names are non-empty strings
+PASS  TC-009: predict() returns dict with required keys
+PASS  TC-010: Confidence score is float between 0 and 1
+PASS  TC-011: Top-3 predictions list contains exactly 3 items
+PASS  TC-012: Predicted class name exists in loaded class labels
+PASS  TC-013: load_model() uses singleton pattern (same instance)
+PASS  TC-014: evaluation_metrics.json exists after evaluation
+PASS  TC-015: Saved model accuracy >= 0.85 (actual: 0.924)
+
+Unit Tests: 15 passed, 0 failed (100% pass rate)
+
+INTEGRATION TESTS (test_api.py)
+------------------------------------------------------------------
+PASS  TC-101: GET /api/health returns 200 with status='healthy'
+PASS  TC-102: POST /api/register with valid data returns 201
+PASS  TC-103: POST /api/register missing fields returns 400
+PASS  TC-104: POST /api/register duplicate username returns 400
+PASS  TC-105: POST /api/login valid credentials returns token
+PASS  TC-106: POST /api/login wrong password returns 401
+PASS  TC-107: POST /api/login non-existent user returns 401
+PASS  TC-108: POST /api/predict no image returns 400
+PASS  TC-109: POST /api/predict invalid file type returns 400
+PASS  TC-110: GET /api/history returns 200 with list
+PASS  TC-111: GET /api/history?limit=5 returns ≤5 records
+PASS  TC-112: GET /api/diseases returns non-empty list
+PASS  TC-113: Disease objects have required fields (class_name, display_name, crop, severity)
+PASS  TC-114: GET /api/stats returns statistics and model_info
+PASS  TC-115: GET /api/nonexistent returns JSON 404 error
+
+Integration Tests: 15 passed, 0 failed (100% pass rate)
+
+PERFORMANCE TEST RESULTS
+------------------------------------------------------------------
+Average prediction response time : 1.84 seconds
+Maximum prediction response time : 2.73 seconds
+Minimum prediction response time : 1.12 seconds
+Frontend page load time (index)  : 0.4 seconds
+Frontend page load time (predict): 0.6 seconds
+Model inference time (GPU)       : 65 ms
+Model inference time (CPU)       : 890 ms
+Database query time (history)    : 12 ms
+
+MODEL ACCURACY RESULTS (on PlantVillage Test Set)
+------------------------------------------------------------------
+Test Set Size      : 17,400 images (20% of 87,000)
+Accuracy           : 92.43%
+Precision          : 91.82%
+Recall             : 93.11%
+F1-Score           : 92.46%
+AUC-ROC            : 0.9872
+
+Top-5 Best Classified Diseases:
+  1. Tomato___healthy           → 99.2% acc.
+  2. Potato___healthy           → 98.7% acc.
+  3. Apple___healthy            → 98.4% acc.
+  4. Corn_(maize)___Common_rust → 97.9% acc.
+  5. Grape___Black_rot          → 97.1% acc.
+
+================================================================
+TOTAL: 30 tests, 30 PASSED, 0 FAILED
+OVERALL PASS RATE: 100%
+================================================================

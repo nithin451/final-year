@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlantGuard AI — Plant Disease Detection System</title>
+  <meta name="description" content="AI-powered plant leaf disease detection system using CNN. Upload a leaf image to instantly identify diseases and get treatment recommendations." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="/" class="nav-brand">
+        <span class="brand-icon">🌿</span>
+        <span class="brand-name">PlantGuard<span class="brand-ai">AI</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/" class="nav-link active">Home</a></li>
+        <li><a href="/predict" class="nav-link">Detect Disease</a></li>
+        <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+      </ul>
+      <button class="nav-cta" onclick="window.location='/predict'">
+        Analyze Leaf →
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-circle c1"></div>
+      <div class="hero-circle c2"></div>
+      <div class="hero-circle c3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        AI-Powered — 92.4% Accuracy
+      </div>
+      <h1 class="hero-title">
+        Detect Plant Diseases<br />
+        <span class="gradient-text">Instantly with AI</span>
+      </h1>
+      <p class="hero-subtitle">
+        Upload a photo of any plant leaf and our CNN model — trained on 87,000+ images 
+        across 38 disease classes — will instantly diagnose the disease and recommend 
+        the right treatment.
+      </p>
+      <div class="hero-actions">
+        <a href="/predict" class="btn btn-primary" id="heroAnalyzeBtn">
+          🔬 Analyze a Leaf Now
+        </a>
+        <a href="/about" class="btn btn-outline">Learn How It Works</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number" data-target="92">0</span><span class="stat-unit">%</span>
+          <span class="stat-label">Accuracy</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="38">0</span>
+          <span class="stat-label">Disease Classes</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="14">0</span>
+          <span class="stat-label">Crop Species</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="87">0</span><span class="stat-unit">K+</span>
+          <span class="stat-label">Training Images</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-header">
+            <span class="phone-title">🌿 PlantGuard AI</span>
+          </div>
+          <div class="phone-upload-area">
+            <div class="phone-leaf-icon">🍃</div>
+            <p>Tap to scan leaf</p>
+          </div>
+          <div class="phone-result">
+            <div class="phone-result-icon disease-icon">⚠️</div>
+            <div class="phone-result-text">
+              <strong>Late Blight Detected</strong>
+              <span>Confidence: 94.2%</span>
+            </div>
+          </div>
+          <div class="phone-bar">
+            <div class="phone-bar-fill" style="width: 94.2%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section how-it-works" id="how">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">How It Works</div>
+        <h2 class="section-title">Disease Detection in <span class="gradient-text">3 Simple Steps</span></h2>
+        <p class="section-subtitle">No agronomist needed. Just a leaf photo and our AI does the rest.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon">📷</div>
+          <h3>Upload Leaf Photo</h3>
+          <p>Take or upload a clear photo of the affected leaf. Supports JPG, PNG, or WEBP from any device.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon">🧠</div>
+          <h3>AI Analysis</h3>
+          <p>Our MobileNetV2 CNN model analyzes 224×224 image features across 38 disease patterns in under 2 seconds.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon">💊</div>
+          <h3>Get Treatment Plan</h3>
+          <p>Receive the disease diagnosis with confidence score, severity rating, and actionable treatment + prevention steps.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Supported Crops -->
+  <section class="section crops-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Supported Crops</div>
+        <h2 class="section-title">14 Crop Species, <span class="gradient-text">38 Disease Classes</span></h2>
+      </div>
+      <div class="crops-grid">
+        <div class="crop-chip">🍎 Apple</div>
+        <div class="crop-chip">🌽 Corn</div>
+        <div class="crop-chip">🍇 Grape</div>
+        <div class="crop-chip">🍊 Orange</div>
+        <div class="crop-chip">🍑 Peach</div>
+        <div class="crop-chip">🫑 Bell Pepper</div>
+        <div class="crop-chip">🥔 Potato</div>
+        <div class="crop-chip">🍓 Strawberry</div>
+        <div class="crop-chip">🍅 Tomato</div>
+        <div class="crop-chip">🫐 Blueberry</div>
+        <div class="crop-chip">🍒 Cherry</div>
+        <div class="crop-chip">🌱 Soybean</div>
+        <div class="crop-chip">🌿 Raspberry</div>
+        <div class="crop-chip">🥒 Squash</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="section tech-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Technology</div>
+        <h2 class="section-title">Powered by <span class="gradient-text">Modern AI</span></h2>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-icon">🤖</div>
+          <h4>MobileNetV2 CNN</h4>
+          <p>Transfer learning from 1.2M ImageNet images</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🐍</div>
+          <h4>Python + TensorFlow</h4>
+          <p>TF 2.13 + Keras for model training & inference</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">⚡</div>
+          <h4>Flask API</h4>
+          <p>RESTful backend with SQLite database</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">📊</div>
+          <h4>PlantVillage Dataset</h4>
+          <p>87,000+ annotated leaf disease images</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to Protect Your Crops?</h2>
+        <p>Upload your first leaf image free. No account needed to get started.</p>
+        <a href="/predict" class="btn btn-primary btn-large" id="ctaBtn">
+          🌿 Start Detection Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand-icon">🌿</span>
+          <strong>PlantGuard AI</strong>
+          <p>AI-Powered Plant Disease Detection System</p>
+          <p class="footer-meta">JNTUA B.Tech CSE Final Year Project | 2024-25</p>
+        </div>
+        <div class="footer-links">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/predict">Detect Disease</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-info">
+          <h5>Project Info</h5>
+          <p>College: CVRT Engineering College, Tadipatri</p>
+          <p>Student: Chaganti Nithin (239B1A0528)</p>
+          <p>Model: MobileNetV2 | Accuracy: 92.4%</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024-25 CVRT Engineering College | JNTUA Affiliated | Academic Project</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

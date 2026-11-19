@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detection Results — PlantGuard AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="/" class="nav-brand">
+        <span class="brand-icon">🌿</span>
+        <span class="brand-name">PlantGuard<span class="brand-ai">AI</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/predict" class="nav-link">Detect Disease</a></li>
+        <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle">☰</button>
+    </div>
+  </nav>
+
+  <main class="results-main">
+    <div class="container">
+      <div class="results-header">
+        <h1 class="page-title">Detection <span class="gradient-text">Results</span></h1>
+        <p class="page-subtitle">AI analysis complete. Review your diagnosis and recommended actions below.</p>
+      </div>
+
+      <!-- No Results State (shown if page loaded directly) -->
+      <div class="no-results-state" id="noResults" style="display:none">
+        <div class="empty-icon">🔍</div>
+        <h2>No Results Yet</h2>
+        <p>Please upload a leaf image first to see the detection results.</p>
+        <a href="/predict" class="btn btn-primary">Go to Detection Page</a>
+      </div>
+
+      <!-- Results Content (filled by JS after prediction) -->
+      <div id="resultsContent">
+        <!-- Main Result Card -->
+        <div class="result-main-card card" id="resultMainCard">
+          <div class="result-header-row">
+            <div class="result-indicator" id="resultIndicator">
+              <span class="result-emoji" id="resultEmoji">🔍</span>
+            </div>
+            <div class="result-headline">
+              <div class="result-confidence-badge" id="confidenceBadge">—</div>
+              <h2 class="result-disease-name" id="diseaseName">Analyzing...</h2>
+              <div class="result-meta">
+                <span class="meta-chip" id="cropChip">🌱 Crop: —</span>
+                <span class="meta-chip severity-chip" id="severityChip">⚡ Severity: —</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Confidence Bar -->
+          <div class="confidence-section">
+            <div class="confidence-label">
+              <span>AI Confidence</span>
+              <span id="confidencePercent" class="confidence-value">—</span>
+            </div>
+            <div class="confidence-bar-bg">
+              <div class="confidence-bar-fill" id="confidenceBarFill" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="result-description" id="resultDescription">
+            <p id="diseaseDescription">Loading disease information...</p>
+          </div>
+        </div>
+
+        <!-- Two Column Grid -->
+        <div class="results-two-col">
+          <!-- Treatment -->
+          <div class="card treatment-card">
+            <h3><span class="card-icon">💊</span> Recommended Treatment</h3>
+            <ul class="treatment-list" id="treatmentList">
+              <li class="skeleton-line"></li>
+              <li class="skeleton-line"></li>
+              <li class="skeleton-line"></li>
+            </ul>
+          </div>
+
+          <!-- Prevention -->
+          <div class="card prevention-card">
+            <h3><span class="card-icon">🛡️</span> Prevention Measures</h3>
+            <ul class="prevention-list" id="preventionList">
+              <li class="skeleton-line"></li>
+              <li class="skeleton-line"></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Top 3 Predictions -->
+        <div class="card top3-card">
+          <h3><span class="card-icon">📊</span> Top 3 Predictions</h3>
+          <div class="top3-list" id="top3List">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+
+        <!-- Image Used -->
+        <div class="card image-info-card" id="imageInfoCard" style="display:none">
+          <h3><span class="card-icon">📷</span> Analyzed Image</h3>
+          <div class="analyzed-image-container">
+            <img id="analyzedImage" class="analyzed-image" alt="Analyzed leaf" />
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="result-actions">
+          <button class="btn btn-primary" onclick="window.location='/predict'" id="scanAnotherBtn">
+            🌿 Scan Another Leaf
+          </button>
+          <button class="btn btn-outline" onclick="window.location='/dashboard'" id="viewHistoryBtn">
+            📊 View History
+          </button>
+          <button class="btn btn-ghost" id="printResultBtn" onclick="window.print()">
+            🖨️ Print Results
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>PlantGuard AI — CVRT Engineering College | JNTUA B.Tech CSE 2024-25</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
